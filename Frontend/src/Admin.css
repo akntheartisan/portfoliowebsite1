@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.adminheader {
+  display: flex;
+  background-color: black;
+  align-items: baseline;
+  padding: 20px;
+  justify-content: space-between;
+  border: 1px solid white;
+}
+
+.adminlogo {
+  color: white;
+}
+
+.sidenav .list {
+  padding: 10px;
+  display: grid;
+  height: 80vh;
+  justify-content: center;
+  align-content: center;
+  gap: 30px;
+}
+
+.sidenav .list {
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  color: white;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 5px;
+}
+
+.sidenav .list a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidenav .list a:hover {
+  text-decoration: underline;
+}
+
+.adminfooter {
+  background-color: black;
+  color: beige;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+}
+
+.workspace {
+  background-color: black;
+  color: beige;
+  border: 1px solid white;
+}
+
+.admindash {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-areas:
+    "sidenav adminheader adminheader"
+    "sidenav workspace workspace"
+    "sidenav adminfooter adminfooter";
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 80px 4fr 50px;
+}
+
+.adminheader {
+  grid-area: adminheader;
+}
+
+.workspace {
+  grid-area: workspace;
+}
+
+.adminfooter {
+  grid-area: adminfooter;
+}
+
+.sidenav {
+  grid-area: sidenav;
+  border: 1px solid white;
+  background-color: black;
+}

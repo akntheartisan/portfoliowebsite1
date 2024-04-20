@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Projectform = () => {
   const [image, setImage] = useState("");
@@ -6,17 +7,25 @@ const Projectform = () => {
   const [desc, setDesc] = useState("");
 
   function submit() {
-    const formData = {
-      image: image,
-      link: link,
-      desc: desc,
-    };
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("link", link);
+    formData.append("desc", desc);
+
     console.log(formData);
 
     async function postdata() {
       try {
-      } catch (error) {}
+        let post = await axios.post(
+          "http://localhost:4000/api/project/",
+          formData
+        );
+      } catch (error) {
+        console.log(error);
+      }
     }
+    postdata();
+    alert("form submitted");
   }
 
   return (

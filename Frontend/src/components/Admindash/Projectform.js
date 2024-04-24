@@ -6,26 +6,28 @@ const Projectform = () => {
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
 
-  function submit() {
+  async function postdata(formData) {
+    try {
+      let post = await axios.post(
+        "http://localhost:4000/api/project/",
+        formData
+      );
+      alert("form submitted");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function submit(e) {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
     formData.append("link", link);
     formData.append("desc", desc);
 
     console.log(formData);
-
-    async function postdata() {
-      try {
-        let post = await axios.post(
-          "http://localhost:4000/api/project/",
-          formData
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    postdata();
-    alert("form submitted");
+    postdata(formData);
+    
   }
 
   return (
@@ -65,7 +67,7 @@ const Projectform = () => {
           className="col-md-12 mt-5"
           style={{ display: "flex", justifyContent: "center" }}
         >
-          <button className="btn btn-primary" onClick={submit}>
+          <button type="submit" className="btn btn-primary" onClick={submit}>
             Submit
           </button>
         </div>

@@ -3,15 +3,15 @@ const Schema = mongoose.Schema;
 
 const projectschema = new Schema(
   {
-    Image: {
+    image: {
       type: String,
       required: true,
     },
-    Description: {
+    desc: {
       type: String,
       required: true,
     },
-    Link: {
+    link: {
       type: String,
       required: true,
     },

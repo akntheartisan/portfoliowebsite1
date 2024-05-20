@@ -1,0 +1,19 @@
+.skill{
+    background-color: #20242D;
+    height: 100vh;
+    perspective: 1000px;
+}
+
+.card{
+    background-color: #323846;
+    box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.2), 0 6px 20px 5px rgba(0, 0, 0, 0.19);
+    padding: 15px;
+    color: white;
+    margin-top: 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.card:hover{
+    transform: translateZ(10px);
+}

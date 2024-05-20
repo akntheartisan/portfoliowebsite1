@@ -1,0 +1,8 @@
+.project{
+    background-color: #323846;
+    height: 100vh;
+    perspective: 1000px;
+}
+.projectimg{
+    border-radius: 15px;
+}

@@ -1,0 +1,23 @@
+.about{
+    background-color: #323846;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutme{
+    color: white;
+ 
+}
+
+.mebutton {
+    padding: 10px;
+    letter-spacing: 3px;
+    border-radius: 30px 30px 30px 30px;
+    border-color: rgba(0,239,254,255);
+    background-color: rgba(0,239,254,255);
+    margin-top: 25px;
+    box-shadow: -2px -1px 15px -1px rgba(0,239,254,255);
+  }

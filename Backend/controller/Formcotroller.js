@@ -2,6 +2,7 @@ const formModel = require("../models/Form");
 const sendMail = require('../utils/sendMail');
 
 exports.postForm = async (req, res) => {
+  console.log(req.body);
   try {
     // Data storing in database
     const newForm = await formModel.create(req.body);

@@ -35,6 +35,9 @@ const Form = () => {
     mail: "",
     location: "",
   });
+  const [error,setError] = useState(true);
+
+  console.log(formData);
 
   const handleClose = () => {
     setOpen(false);
@@ -49,18 +52,26 @@ const Form = () => {
   };
 
   const submit = async () => {
+    if(formData.name ==="" || formData.companyname ==="" || formData.mail ==="" || formData.location ===""){
+      setError(false);
+      return false;
+    }
     try {
       await axios.post("http://localhost:4000/api/project/form", formData);
       alert("Form Submitted Successfully");
+      handleClose();
+      setFormData("");
     } catch (error) {
       console.log(error);
+      console.log(error.response.data.message === 'E11000 duplicate key error collection');
+      alert('This mail id is already registered');
     }
   };
 
   return (
     <>
       <BootstrapDialog
-        onClose={handleClose}
+        // onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
@@ -84,6 +95,7 @@ const Form = () => {
             <TextField
               label="Name"
               name="name"
+              helperText={!error ? 'please fill the name' : ''}
               value={formData.name}
               onChange={handleChange}
               InputProps={{
@@ -98,6 +110,7 @@ const Form = () => {
             <TextField
               label="Company Name"
               name="companyname"
+              helperText={!error ? 'please fill the companyname' : ''}
               value={formData.companyname}
               onChange={handleChange}
               InputProps={{
@@ -112,6 +125,7 @@ const Form = () => {
             <TextField
               label="Mail Id"
               name="mail"
+              helperText={!error ? 'please fill the mail' : ''}
               value={formData.mail}
               onChange={handleChange}
               InputProps={{
@@ -126,6 +140,7 @@ const Form = () => {
             <TextField
               label="Location"
               name="location"
+              helperText={!error ? 'please fill the location' : ''}
               value={formData.location}
               onChange={handleChange}
               InputProps={{

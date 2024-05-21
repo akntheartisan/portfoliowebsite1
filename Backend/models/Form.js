@@ -3,7 +3,8 @@ const schema = mongoose.Schema;
 
 const Form = new schema({
     name:{
-        type:String
+        type:String,
+        unique:true
     },
     companyname:{
         type:String

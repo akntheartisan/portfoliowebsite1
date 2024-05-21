@@ -42,7 +42,7 @@ const Project = () => {
 
             {proj &&
               proj.map((each) => (
-                <div className="col-md-4" key={each._id}>
+                <div className="col-md-4 proshow" key={each._id}>
                   <img
                     src={`http://localhost:4000/uploads/${each.image}`}
                     style={{ width: "100%" }}

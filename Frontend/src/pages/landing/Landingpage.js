@@ -2,28 +2,26 @@ import React, {useState, createContext} from "react";
 import "../../App.css";
 import Navbar from '../navbar/Navbar';
 import Mine from '../mine/Mine';
+import About from "../about/About";
+import Skill from "../skills/Skill";
+import Project from "../project/Project";
+import Projectexp from "../projectexp/Projectexp";
 
-export const FormContext = createContext();
+
 
 const Landingpage = () => {
-  const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-    // console.log('clicked');
-  };
   return (
     <>
-    <FormContext.Provider
-    value={{open,setOpen,handleClickOpen}} 
-    >
+    
       <Navbar/>
       <Mine/>
-    </FormContext.Provider>
-  
       <div className="landing">
         {/* <img className="landimg" src="/background.jpg" alt="Background" /> */}
       </div>
+      <About/>
+      <Skill/>
+      <Project/>
     </>
   );
 };

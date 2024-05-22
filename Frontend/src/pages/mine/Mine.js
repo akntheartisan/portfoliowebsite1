@@ -2,7 +2,7 @@ import React, { useState,useContext } from "react";
 import XIcon from "@mui/icons-material/X";
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { FormContext } from '../landing/Landingpage';
+import { FormContext } from "../../App";
 import Form from "../landing/Form";
 
 const Mine = () => {

@@ -54,7 +54,7 @@ const Project = () => {
                 <Button
                   onClick={() =>
                     navigate(`/projectexp/${each._id}`, {
-                      state: { desc: each.desc, link: each.link },
+                      state: { desc: each.desc, link: each.link, image: each.image },
                     })
                   }
                 >

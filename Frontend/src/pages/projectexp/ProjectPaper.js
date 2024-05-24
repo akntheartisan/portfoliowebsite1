@@ -11,12 +11,12 @@ export default function ProjectPaper() {
         '& > :not(style)': {
           width: 500,
           height: 500,
-          borderRadius:'0 8px 8px 0'
+          borderRadius: '0 8px 8px 0',
         },
-        position:'relative'
       }}
     >
-      <Paper elevation={3} />
+      <Paper elevation={3} sx={{ position: 'relative' }} /> {/* Apply position: 'relative' here */}
     </Box>
   );
 }
+

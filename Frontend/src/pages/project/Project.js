@@ -26,7 +26,7 @@ const Project = () => {
   }, []);
 
   return (
-    <div className="project">
+    <div className="project" id="project">
       <div className="container">
         <div className="row">
           <div className="col-md-12">

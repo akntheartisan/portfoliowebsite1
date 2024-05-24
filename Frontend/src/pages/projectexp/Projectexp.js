@@ -6,7 +6,7 @@ import ProjectPaper from "./ProjectPaper";
 
 const Projectexp = () => {
   const location = useLocation();
-  const state = location.state || {}; 
+  const state = location.state || {};
   const { desc, link, image } = state;
 
   return (
@@ -14,12 +14,12 @@ const Projectexp = () => {
       <div className="projectexp">
         <img src={`http://localhost:4000/uploads/${image}`} />
         <ProjectPaper />
-        <div className="projectdetails">
-          <p>{desc}</p>
-          <Link to={link}>
-            <Button>Click Here</Button>
-          </Link>
-        </div>
+      </div>
+      <div className="projectdetails">
+        <p>{desc}</p>
+        <Link to={link}>
+          <Button>Click Here</Button>
+        </Link>
       </div>
     </>
   );

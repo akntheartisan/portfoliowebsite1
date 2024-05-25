@@ -13,9 +13,16 @@ exports.postForm = async (req, res) => {
       data: { form: newForm },
     });
 
-    // Mail send
+    // Mail send to company
     await sendMail({
       mail: req.body.mail,
+      subject: 'Company Contacted',
+      text: `Thank you for visit my website`,
+    });
+
+    //Mail sent to me
+    await sendMail({
+      mail: 'aravinthkumaran410@gmail.com',
       subject: 'Company Contacted',
       text: `This ${req.body.companyname} tried to contact you`,
     });

@@ -4,7 +4,6 @@ const schema = mongoose.Schema;
 const Form = new schema({
     name:{
         type:String,
-        unique:true
     },
     companyname:{
         type:String
@@ -15,6 +14,9 @@ const Form = new schema({
     },
     location:{
         type:String,
+    },
+    rating:{
+        type:Number
     }
 },{timestamps:true});
 

@@ -8,7 +8,7 @@ const Skill = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-                <h3 style={{textAlign:"center",color:"white",marginTop:"50px",marginBottom:"50px"}}>My <span style={{color:'rgba(0,239,254,255)'}}>Skills</span></h3>
+                <h3 style={{textAlign:"center",color:"white",marginTop:"20px",marginBottom:"50px"}}>My <span style={{color:'rgba(0,239,254,255)'}}>Skills</span></h3>
             </div>
             <div className="col-md-4">
               <div className="card">

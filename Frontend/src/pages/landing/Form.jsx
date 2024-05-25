@@ -9,11 +9,12 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import { FormContext } from "../../App";
-import { Stack, TextField, InputAdornment } from "@mui/material";
+import { Stack, TextField, InputAdornment, Box } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BusinessIcon from "@mui/icons-material/Business";
 import EmailIcon from "@mui/icons-material/Email";
 import NearMeIcon from "@mui/icons-material/NearMe";
+import Rating from "@mui/material/Rating";
 import axios from "axios";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -25,8 +26,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-// const intialData = {name:"",companyname:"",mail:"",location:""};
-
 const Form = () => {
   const { open, setOpen, handleClickOpen } = useContext(FormContext);
   const [formData, setFormData] = useState({
@@ -35,7 +34,8 @@ const Form = () => {
     mail: "",
     location: "",
   });
-  const [error,setError] = useState(true);
+  const [errors, setErrors] = useState({});
+  const [rating, setRating] = useState(0);
 
   console.log(formData);
 
@@ -45,36 +45,54 @@ const Form = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => {
-      const data = { ...prev, [name]: value };
-      return data;
-    });
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setErrors((prev) => ({
+      ...prev,
+      [name]: false,
+    }));
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = "Please fill the name";
+    if (!formData.companyname) newErrors.companyname = "Please fill the company name";
+    if (!formData.mail) newErrors.mail = "Please fill the mail";
+    if (!formData.location) newErrors.location = "Please fill the location";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const submit = async () => {
-    if(formData.name ==="" || formData.companyname ==="" || formData.mail ==="" || formData.location ===""){
-      setError(false);
-      return false;
-    }
+    if (!validateForm()) return;
+
+    const dataToSubmit = { ...formData, rating: rating };
+
     try {
-      await axios.post("http://localhost:4000/api/project/form", formData);
+      await axios.post("http://localhost:4000/api/project/form", dataToSubmit);
       alert("Form Submitted Successfully");
       handleClose();
-      setFormData("");
+      setFormData({
+        name: "",
+        companyname: "",
+        mail: "",
+        location: "",
+      });
+      setRating(0);
     } catch (error) {
       console.log(error);
-      console.log(error.response.data.message === 'E11000 duplicate key error collection');
-      alert('This mail id is already registered');
+      if (error.response?.data?.message === "E11000 duplicate key error collection") {
+        alert("This mail id is already registered");
+      }
     }
   };
 
   return (
     <>
-      <BootstrapDialog
-        // onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
+      <BootstrapDialog aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
           Modal title
         </DialogTitle>
@@ -95,7 +113,8 @@ const Form = () => {
             <TextField
               label="Name"
               name="name"
-              helperText={!error ? 'please fill the name' : ''}
+              helperText={errors.name}
+              error={!!errors.name}
               value={formData.name}
               onChange={handleChange}
               InputProps={{
@@ -106,11 +125,11 @@ const Form = () => {
                 ),
               }}
             />
-
             <TextField
               label="Company Name"
               name="companyname"
-              helperText={!error ? 'please fill the companyname' : ''}
+              helperText={errors.companyname}
+              error={!!errors.companyname}
               value={formData.companyname}
               onChange={handleChange}
               InputProps={{
@@ -121,11 +140,11 @@ const Form = () => {
                 ),
               }}
             />
-
             <TextField
               label="Mail Id"
               name="mail"
-              helperText={!error ? 'please fill the mail' : ''}
+              helperText={errors.mail}
+              error={!!errors.mail}
               value={formData.mail}
               onChange={handleChange}
               InputProps={{
@@ -136,11 +155,11 @@ const Form = () => {
                 ),
               }}
             />
-
             <TextField
               label="Location"
               name="location"
-              helperText={!error ? 'please fill the location' : ''}
+              helperText={errors.location}
+              error={!!errors.location}
               value={formData.location}
               onChange={handleChange}
               InputProps={{
@@ -151,6 +170,14 @@ const Form = () => {
                 ),
               }}
             />
+            <Box sx={{ marginTop: "20px", textAlign: "center" }}>
+              <Typography>Rate My Website</Typography>
+              <Rating
+                name="rating"
+                value={rating}
+                onChange={(event, newValue) => setRating(newValue)}
+              />
+            </Box>
           </Stack>
         </DialogContent>
         <DialogActions>

@@ -1,25 +1,20 @@
-import { Button } from "@mui/material";
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./projectexp.css";
 import ProjectPaper from "./ProjectPaper";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Projectexp = () => {
   const location = useLocation();
   const state = location.state || {};
-  const { desc, link, image } = state;
+  const { image } = state;
 
   return (
     <>
       <div className="projectexp">
-        <img src={`http://localhost:4000/uploads/${image}`} />
-        <ProjectPaper />
-      </div>
-      <div className="projectdetails">
-        <p>{desc}</p>
-        <Link to={link}>
-          <Button>Click Here</Button>
-        </Link>
+        <img src={`http://localhost:4000/uploads/${image}`} alt="project"/>
+        {/* <ArrowBackIcon sx={{position:'absolute'}}/> */}
+        <ProjectPaper state={state} />
       </div>
     </>
   );

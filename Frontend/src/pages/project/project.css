@@ -1,12 +1,90 @@
-.project{
+.project {
     background-color: #323846;
     height: 100vh;
     perspective: 1000px;
 }
 
-.projectimg{
-    box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.5);
-    display: block;
+.projectimg-wrapper {
+    position: relative;
     max-width: 100%;
     border-radius: 15px;
+    box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.projectimg {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.paper {
+    width: 250px;
+    height: 100px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    position: absolute;
+    bottom: -9rem;
+    left: 0;
+    right: 0; 
+    margin-inline: auto;
+    padding: 10px; 
+
+}
+
+.projectimg-wrapper:hover .paper{
+    animation: show 1s forwards;
+    opacity: 1;
+    transition: opacity .3s;
+}
+
+.projectimg-wrapper:not(:hover) .paper{
+    animation: noshow 1s forwards
+}
+
+.projectimg-wrapper:hover{
+    animation: remove-overflow 2s forwards;
+}
+
+.projectimg-wrapper:not(:hover){
+    animation: show-overflow 2s forwards;
+}
+
+@keyframes show{
+    50%{
+         transform: translateY(-10rem);
+    }
+    100%{
+        transform: translateY(-7rem);
+    }
+}
+
+@keyframes remove-overflow {
+    to{
+        overflow: initial;
+    }
+}
+
+@keyframes noshow{
+    0%{
+        transform: translateY(-7rem);
+    }
+
+    50%{
+        transform: translateY(-10rem);
+    }
+
+    100%{
+        transform: translateY(.5rem);
+    }
+}
+
+@keyframes show-overflow{
+    0%{
+        overflow: initial;
+        pointer-events: none;
+    }
+    50%{
+        overflow: hidden;
+    }
 }

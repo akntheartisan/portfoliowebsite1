@@ -27,7 +27,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const Form = () => {
-  const { open, setOpen, handleClickOpen } = useContext(FormContext);
+  const { open, setOpen } = useContext(FormContext);
   const [formData, setFormData] = useState({
     name: "",
     companyname: "",

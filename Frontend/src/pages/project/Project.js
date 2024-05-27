@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./project.css";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import Papercard from "./Papercard";
 
 const Project = () => {
   const [proj, setProj] = useState([]);
-  const navigate = useNavigate();
 
   async function getData() {
     try {
@@ -45,22 +43,17 @@ const Project = () => {
           {proj.length > 0 &&
             proj.map((each) => (
               <div className="col-md-4 proshow" key={each._id}>
+              <div className="projectimg-wrapper">
                 <img
                   src={`http://localhost:4000/uploads/${each.image}`}
-                  style={{ width: "100%" }}
                   alt="project"
                   className="projectimg"
                 />
-                <Button
-                  onClick={() =>
-                    navigate(`/projectexp/${each._id}`, {
-                      state: { desc: each.desc, link: each.link, image: each.image },
-                    })
-                  }
-                >
-                  Click Here
-                </Button>
+                <Papercard each={each}/>
               </div>
+              
+            </div>
+            
             ))}
         </div>
       </div>

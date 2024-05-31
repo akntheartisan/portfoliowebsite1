@@ -33,6 +33,7 @@ function App() {
           </Routes>
           <Routes>
             <Route path="/" element={<Landingpage />} />
+            <Route path="/:id" element={<Landingpage />} />
             <Route path="/projectexp/:id" element={<Projectexp />} />
             <Route path="/signin" element={<Signin setUser={setUser} />} />
           </Routes>

@@ -10,6 +10,6 @@ const Formcontroller = require("../controller/Formcotroller");
 
 router.post("/", uploadHandler, createTask);
 router.get("/", getProjects);
-router.post("/form",Formcontroller.postForm);
+router.post("/form",Formcontroller.postForm,Formcontroller.ratingMail);
 
 module.exports = router;

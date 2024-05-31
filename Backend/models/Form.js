@@ -10,7 +10,7 @@ const Form = new schema({
     },
     mail:{
         type:String,
-        unique:true
+        // unique:true
     },
     location:{
         type:String,

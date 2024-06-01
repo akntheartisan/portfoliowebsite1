@@ -6,19 +6,25 @@ import About from "../about/About";
 import Skill from "../skills/Skill";
 import Project from "../project/Project";
 import Projectexp from "../projectexp/Projectexp";
+import { useParams } from "react-router-dom";
 
 
 
-const Landingpage = () => {
+const Landingpage = ({WebRating}) => {
+
+  const {id} = useParams();
 
   return (
     <>
     
       <Navbar/>
       <Mine/>
+      
       <div className="landing">
         {/* <img className="landimg" src="/background.jpg" alt="Background" /> */}
+        {id && <WebRating id={id}/>}
       </div>
+      
       <About/>
       <Skill/>
       <Project/>

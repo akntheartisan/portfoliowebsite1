@@ -35,7 +35,6 @@ const Form = () => {
     location: "",
   });
   const [errors, setErrors] = useState({});
-  const [rating, setRating] = useState(0);
 
   console.log(formData);
 
@@ -69,10 +68,8 @@ const Form = () => {
   const submit = async () => {
     if (!validateForm()) return;
 
-    const dataToSubmit = { ...formData, rating: rating };
-
     try {
-      await axios.post("http://localhost:4000/api/project/form", dataToSubmit);
+      await axios.post("http://localhost:4000/api/project/form", formData);
       alert("Form Submitted Successfully");
       handleClose();
       setFormData({
@@ -81,7 +78,7 @@ const Form = () => {
         mail: "",
         location: "",
       });
-      setRating(0);
+      
     } catch (error) {
       console.log(error);
       if (error.response?.data?.message === "E11000 duplicate key error collection") {
@@ -170,14 +167,14 @@ const Form = () => {
                 ),
               }}
             />
-            <Box sx={{ marginTop: "20px", textAlign: "center" }}>
+            {/* <Box sx={{ marginTop: "20px", textAlign: "center" }}>
               <Typography>Rate My Website</Typography>
               <Rating
                 name="rating"
                 value={rating}
                 onChange={(event, newValue) => setRating(newValue)}
               />
-            </Box>
+            </Box> */}
           </Stack>
         </DialogContent>
         <DialogActions>

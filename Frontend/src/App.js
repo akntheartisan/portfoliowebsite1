@@ -8,6 +8,7 @@ import About from "./pages/about/About";
 import Skill from "./pages/skills/Skill";
 import Project from "./pages/project/Project";
 import Projectexp from "./pages/projectexp/Projectexp";
+import WebRating from "./pages/rating/WebRating";
 
 export const FormContext = createContext();
 
@@ -33,7 +34,7 @@ function App() {
           </Routes>
           <Routes>
             <Route path="/" element={<Landingpage />} />
-            <Route path="/:id" element={<Landingpage />} />
+            <Route path="/:id" element={<Landingpage  WebRating={WebRating}/>} />
             <Route path="/projectexp/:id" element={<Projectexp />} />
             <Route path="/signin" element={<Signin setUser={setUser} />} />
           </Routes>

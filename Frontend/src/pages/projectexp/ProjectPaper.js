@@ -6,7 +6,7 @@ import Paper from "@mui/material/Paper";
 import "./projectexp.css";
 
 export default function ProjectPaper({ state }) {
-  const { desc, link } = state;
+  const { desc, link, title } = state;
   return (
     <Box
       sx={{
@@ -29,6 +29,15 @@ export default function ProjectPaper({ state }) {
         }}
       >
         <div className="projectdetails">
+          <h4
+            style={{
+              marginBottom: "30px",
+              fontStyle: "italic",
+              color: 'rgb(0, 239, 254)'
+            }}
+          >
+            {title}
+          </h4>
           <p>{desc}</p>
           <Link to={link}>
             <Button className="buton">Take Me There</Button>

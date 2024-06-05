@@ -48,25 +48,24 @@ exports.ratingMail = async (req, res, next) => {
 };
 
 exports.ratingSubmit = async (req, res, next) => {
-  const { id, rating } = req.body; 
-
+  const { rating } = req.body;
+  const id = req.params.id;
   console.log(id);
-
   const findUser = await formModel.findById(id);
-  if(!findUser){
-    console.log('invalid user');
+  if (!findUser) {
+    console.log("invalid user");
     return res.status(400).json({
-      status:'fail',
-      message:'Invalid user'
+      status: "fail",
+      message: "Invalid user",
     });
   }
 
-  // if(!mongoose.Types.ObjectId.isValid(id)){
-  //   return res.status(400).json({
-  //     status:'fail',
-  //     message:'Invalid user'
-  //   });
-  // }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      status: "fail",
+      message: "Invalid Id",
+    });
+  }
 
   try {
     const findUserAndUpdate = await formModel.findByIdAndUpdate(id, {

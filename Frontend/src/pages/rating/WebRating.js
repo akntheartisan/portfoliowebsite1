@@ -12,10 +12,10 @@ const WebRating = ({ id }) => {
   const navigate = useNavigate();
 
   const ratingSubmit = async () => {
-    const data = { id, rating: rating };
+    const data = { rating: rating };
 
     try {
-      await axios.post("http://localhost:4000/api/project/ratingsub", data);
+      await axios.post(`http://localhost:4000/api/project/ratingsub/${id}`, data);
       alert("Rating Submitted Successfully");
       setRating(0);
       navigate("/");

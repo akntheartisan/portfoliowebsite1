@@ -11,6 +11,6 @@ const Formcontroller = require("../controller/Formcotroller");
 router.post("/", uploadHandler, createTask);
 router.get("/", getProjects);
 router.post("/form",Formcontroller.postForm,Formcontroller.ratingMail);
-router.post("/ratingsub",Formcontroller.ratingSubmit);
+router.post("/ratingsub/:id",Formcontroller.ratingSubmit);
 
 module.exports = router;

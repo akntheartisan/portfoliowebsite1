@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const projectroute = require("./router/Projectrouter");
+const userroute = require("./router/Userrouter");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 
 //routes
 app.use("/api/project", projectroute);
+app.use("/api/project", userroute);
 
 //mongodb connection
 const MONGO_URI =

@@ -22,6 +22,8 @@ const Signup = () => {
     }));
   };
 
+  console.log(user);
+
   const submit = async () => {
     try {
       await axios.post("http://localhost:4000/api/project/signup", user);

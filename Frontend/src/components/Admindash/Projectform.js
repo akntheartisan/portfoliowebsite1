@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Projectform = () => {
   const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
   const [desc, setDesc] = useState("");
 
@@ -22,18 +23,18 @@ const Projectform = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
+    formData.append("title", title);
     formData.append("link", link);
     formData.append("desc", desc);
 
     console.log(formData);
     postdata(formData);
-    
   }
 
   return (
     <div className="container mt-3">
       <div className="row">
-        <div className="col-md-4 form-group offset-md-2">
+        <div className="col-md-6 form-group">
           <h4>Image</h4>
           <input
             className="form-control"
@@ -42,7 +43,16 @@ const Projectform = () => {
           />
         </div>
 
-        <div className="col-md-4 form-group">
+        <div className="col-md-6 form-group">
+          <h4>Project Title</h4>
+          <input
+            className="form-control"
+            type="title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+
+        <div className="col-md-6 form-group">
           <h4>Link</h4>
           <input
             className="form-control"
@@ -52,7 +62,7 @@ const Projectform = () => {
           />
         </div>
 
-        <div className="col-md-6 form-group offset-md-3">
+        <div className="col-md-6 form-group">
           <h4>Description</h4>
           <textarea
             className="form-control"

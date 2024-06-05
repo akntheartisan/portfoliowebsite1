@@ -2,7 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import "./projectexp.css";
 import ProjectPaper from "./ProjectPaper";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"; 
+import { IconButton } from "@mui/material";
 
 const Projectexp = () => {
   const location = useLocation();
@@ -12,8 +13,27 @@ const Projectexp = () => {
   return (
     <>
       <div className="projectexp">
-        <img src={`http://localhost:4000/uploads/${image}`} alt="project"/>
-        {/* <ArrowBackIcon sx={{position:'absolute'}}/> */}
+        <div style={{ position: "relative" }}>
+          <img
+            src={`http://localhost:4000/uploads/${image}`}
+            alt="project"
+            style={{ backdropFilter: blur("1rem") }}
+          />
+          <IconButton
+            component="a"
+            href="http://localhost:3000/"
+            sx={{
+              position: "absolute",
+              top: "10px",
+              left: "10px",
+              color: "rgba(0, 239, 254, 255)",
+              filter: "drop-shadow -2px -1px 15px -1px rgba(0, 239, 254, 255)",
+              
+            }}
+          >
+            <ArrowBackIcon  sx={{backgroundColor:'#20242d',borderRadius:'50%'}}/>
+          </IconButton>
+        </div>
         <ProjectPaper state={state} />
       </div>
     </>

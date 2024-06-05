@@ -2,13 +2,14 @@ import "./App.css";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Landingpage from "./pages/landing/Landingpage";
 import { useState, createContext } from "react";
-import Signin from "./components/Signin";
+import Signin from "./pages/loginpage/Signin";
 import Admindash from "./components/Admindash";
 import About from "./pages/about/About";
 import Skill from "./pages/skills/Skill";
 import Project from "./pages/project/Project";
 import Projectexp from "./pages/projectexp/Projectexp";
 import WebRating from "./pages/rating/WebRating";
+import LoginPage from "./pages/loginpage/LoginPage";
 
 export const FormContext = createContext();
 
@@ -34,9 +35,9 @@ function App() {
           </Routes>
           <Routes>
             <Route path="/" element={<Landingpage />} />
-            <Route path="/:id" element={<Landingpage  WebRating={WebRating}/>} />
+            <Route path="/rating/:id" element={<Landingpage  WebRating={WebRating}/>} />
             <Route path="/projectexp/:id" element={<Projectexp />} />
-            <Route path="/signin" element={<Signin setUser={setUser} />} />
+            <Route path="/signin" element={<LoginPage setUser={setUser} />} />
           </Routes>
         </BrowserRouter>
       </FormContext.Provider>

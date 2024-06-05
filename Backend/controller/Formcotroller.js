@@ -35,7 +35,7 @@ exports.ratingMail = async (req, res, next) => {
   const formId = req.body.newId;
   console.log("The new form ID is:", formId);
 
-  const url = `http://localhost:3000/${formId}`;
+  const url = `http://localhost:3000/rating/${formId}`;
 
   // Mail send to company
   await sendMail({

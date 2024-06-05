@@ -24,15 +24,17 @@ let uploadHandler = upload.single("image");
 
 const createTask = async function (req, res) {
 
-  const {link,desc} = req.body;
+  const {link,desc,title} = req.body; 
   const imagepath = req.file.filename;
+  console.log(req.file);
 
   try {
 
     const project = await projectmodel.create({
       image:imagepath,
       desc,
-      link
+      link,
+      title
     });
 
     res.status(200).json({

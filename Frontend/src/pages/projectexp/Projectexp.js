@@ -28,9 +28,10 @@ const Projectexp = () => {
               left: "10px",
               color: "rgba(0, 239, 254, 255)",
               filter: "drop-shadow -2px -1px 15px -1px rgba(0, 239, 254, 255)",
+              
             }}
           >
-            <ArrowBackIcon />
+            <ArrowBackIcon  sx={{backgroundColor:'#20242d',borderRadius:'50%'}}/>
           </IconButton>
         </div>
         <ProjectPaper state={state} />

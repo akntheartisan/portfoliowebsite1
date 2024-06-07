@@ -5,18 +5,42 @@ import { Stack, TextField, InputAdornment, Box } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BusinessIcon from "@mui/icons-material/Business";
 import Button from "@mui/material/Button";
+import axios from "axios";
 
 const Signin = ({ setUser }) => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [auth, setAuth] = useState("");
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
-  function verify() {
-    if (name == "ak" && auth == "ak") {
-      setUser(true);
+  async function verify() {
+
+    const credential = {username,password}
+    // if (name == "ak" && auth == "ak") {
+    //   setUser(true);
+    //   navigate("/admin");
+    // } else {
+    //   alert("wrong credentials");
+    // }
+
+    try {
+      const response = await axios.post("http://localhost:4000/api/project/signin", credential);
+      const token = response.data.token;
+      // console.log(token);
+      setUserName("");
+      setPassword("");
+
+      if(token){
+        navigate("/admin")
+      }else{
+        navigate("/")
+      }
+      
+     
       navigate("/admin");
-    } else {
-      alert("wrong credentials");
+      alert("Form Submitted Successfully");
+      
+    } catch (error) {
+      console.log(error);
     }
   }
   return (
@@ -25,11 +49,11 @@ const Signin = ({ setUser }) => {
         <Stack direction="column" spacing={4}>
           <TextField
             label="Username"
-            name="name"
+            name="username"
             // helperText={errors.name}
             // error={!!errors.name}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={username}
+            onChange={(e) => setUserName(e.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -41,11 +65,11 @@ const Signin = ({ setUser }) => {
 
           <TextField
             label="Password"
-            name="companyname"
+            name="password"
             // helperText={errors.companyname}
             // error={!!errors.companyname}
-            value={auth}
-            onChange={(e) => setAuth(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -56,7 +80,7 @@ const Signin = ({ setUser }) => {
           />
         </Stack>
         <Stack direction='row' spacing={2} mt={2}>
-          <Button autoFocus onClick={verify}>
+          <Button autoFocus>
             Cancel
           </Button>
           <Button autoFocus onClick={verify}>

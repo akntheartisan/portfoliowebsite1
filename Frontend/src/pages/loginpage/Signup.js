@@ -6,6 +6,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BusinessIcon from "@mui/icons-material/Business";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const intial = { name: "", username: "", password: "", confirmpassword: "" };
 
@@ -26,11 +27,18 @@ const Signup = () => {
 
   const submit = async () => {
     try {
-      await axios.post("http://localhost:4000/api/project/signup", user);
-      alert("Form Submitted Successfully");
+      const { response } = await axios.post(
+        "http://localhost:4000/api/project/signup",
+        user
+      );
+
+      toast.success("Login Successfull");
       setUser({ name: "", username: "", password: "", confirmpassword: "" });
     } catch (error) {
       console.log(error);
+      if (error.response.data.error) {
+        toast.error(error.response.data.error);
+      }
     }
   };
 

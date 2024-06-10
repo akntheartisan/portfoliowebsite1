@@ -4,7 +4,26 @@ const jwt = require("jsonwebtoken");
 
 exports.signup = async (req, res, next) => {
   console.log(req.body);
+  const { username,password } = req.body;
+  console.log(username);
   try {
+   
+    const exist = await usermodel.findOne({ username });
+
+    console.log('exist:' + exist);
+
+    if (exist) {
+      return res.status(400).json({
+        error: "username already taken",
+      });
+    }
+
+    if(password.length < 8){
+      return res.status(400).json({
+        error: "Password must be atleast 8 characters",
+      });
+    }
+
     const newuser = await usermodel.create(req.body);
 
     const token = jwt.sign({ id: newuser._id }, process.env.JWT_SECRET, {
@@ -13,11 +32,13 @@ exports.signup = async (req, res, next) => {
 
     console.log(token);
 
-    res.status(200).json({
-      status: "success",
-      token,
-      data: { user: newuser },
-    });
+    // res.status(200).json({
+    //   status: "success",
+    //   token,
+    //   data: { user: newuser },
+    // });
+
+    res.cookie('token',token).json(newuser);
   } catch (error) {
     res.status(400).json({
       status: "fail",
@@ -67,12 +88,11 @@ exports.signin = async (req, res, next) => {
     status: "success",
     token,
   });
-
 };
 
 exports.protect = async (req, res, next) => {
-    console.log('thisistriggered');
-    //1) get the token from the header
+  console.log("thisistriggered");
+  //1) get the token from the header
   let token;
 
   if (

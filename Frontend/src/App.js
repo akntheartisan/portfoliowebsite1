@@ -10,6 +10,7 @@ import Project from "./pages/project/Project";
 import Projectexp from "./pages/projectexp/Projectexp";
 import WebRating from "./pages/rating/WebRating";
 import LoginPage from "./pages/loginpage/LoginPage";
+import {Toaster} from 'react-hot-toast';
 
 export const FormContext = createContext();
 
@@ -30,16 +31,17 @@ function App() {
   };
   return (
     <div>
+      <Toaster position="top-center" toastOptions={{duration:2000}}/>
       <FormContext.Provider value={{ open, setOpen, handleClickOpen }}>
         <BrowserRouter>
           <Routes>
-            {/* <Route
+            <Route
               path="/admin/*"
               element={
                 user ? <Admindash setuser={setUser} /> : <Navigate to="/" />
               }
-            /> */}
-            <Route path="/admin/*" element={<Admindash setuser={setUser} />} />
+            />
+            {/* <Route path="/admin/*" element={<Admindash setuser={setUser} />} /> */}
           </Routes>
           <Routes>
             <Route path="/" element={<Landingpage />} />

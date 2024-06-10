@@ -24,7 +24,7 @@ const Signin = ({ setUser }) => {
 
     try {
       const response = await axios.post("http://localhost:4000/api/project/signin", credential);
-      const token = response.data.token;
+      // const token = response.data.token;
       // console.log(token);
       setUserName("");
       setPassword("");
@@ -35,8 +35,6 @@ const Signin = ({ setUser }) => {
         navigate("/")
       }
       
-     
-      navigate("/admin");
       alert("Form Submitted Successfully");
       
     } catch (error) {
